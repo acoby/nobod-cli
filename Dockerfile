@@ -7,4 +7,13 @@ LABEL maintainer="TRW <trw@acoby.de>" \
       org.label-schema.vendor="acoby GmbH"
 
 COPY nobod-cli.py /usr/local/bin/nobod-cli
+
+RUN apk add --no-cache --update git openssh-keygen && \
+    adduser -u 5000 -h /repository -D worker && \
+    python3 -m pip install --upgrade pip && \
+    python3 -m pip --no-cache install netaddr passlib requests && \
+    chmod 755 /usr/local/bin/nobod-cli
+
+USER worker
+
 CMD ["/usr/local/bin/nobod-cli", "--help"]
