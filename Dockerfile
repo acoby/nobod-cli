@@ -6,6 +6,8 @@ LABEL maintainer="TRW <trw@acoby.de>" \
       org.label-schema.url="https://github.com/acoby/nobod-cli" \
       org.label-schema.vendor="acoby GmbH"
 
+ENV TZ Europe/Berlin
+
 COPY nobod-cli.py /usr/local/bin/nobod-cli
 
 RUN apk add --no-cache --update git openssh-keygen && \
