@@ -67,14 +67,14 @@ class RunCLI(object):
       finished = job.get('finished')
       if finished is not None:
         exitcode = job.get('job_returncode')
-        result = job.get('job_result')
+        result = json.loads(job.get('job_result'))
 
         if exitcode == 0:
           status = 'successful'
         else:
           status = 'failed'
         
-        logging.info('Job {} finished with state {}.\nOutput:\n{}'.format(jobId, status, result))
+        logging.info('Job {} finished with state {}.\nOutput:\n{}'.format(jobId, status, json.dumps(result, indent=1)))
         break
 
       logging.info('Waiting {} seconds ...'.format(self.args.job_wait_timeout))
