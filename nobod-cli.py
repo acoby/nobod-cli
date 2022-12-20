@@ -116,6 +116,9 @@ class RunCLI(object):
     if self.args.instance != None:
       url = url + "&instance=" + self.args.instance
     
+    if self.args.inventory != None:
+      url = url + "&inventory=" + self.args.inventory
+    
     username = self.args.username
     password = self.args.password
     
@@ -149,6 +152,7 @@ class RunCLI(object):
     parser.add_argument('--username', action = 'store', type=str, help='the username to access the NOBOD CI API', required=True)
     parser.add_argument('--password', action = 'store', type=str, help='the password to access the NOBOD CI API', required=True)
     parser.add_argument('--instance', action = 'store', type=str, help='an optional concrete instance id', required=False)
+    parser.add_argument('--inventory', action = 'store', type=str, help='an optional inventory id', required=False)
     parser.add_argument('--job-wait-timeout', action = 'store', type=int, help='an optional concrete wait time in seconds', required=False, default=SLEEP_TIME)
     parser.add_argument('--job-finish-timeout', action = 'store', type=int, help='wait for that time within the job should finish', required=False, default=MAX_WAIT_TIME)
     parser.add_argument('--tls-verify', action = 'store', type=bool, help='check a valid TLS connection', required=False, default=HTTP_VERIFY_SSL)
